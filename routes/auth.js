@@ -5,7 +5,7 @@ const router = express.Router()
 // @route  POST api/users
 
 router.get('/', (req, res)=>{
-    res.send('get logged in  user')
+    res.send('get logged in  user and git')
 });
 
 router.post('/', (req, res)=>{
