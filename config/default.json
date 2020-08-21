@@ -1,4 +1,5 @@
 {
-    "mongoURI": "mongodb+srv://max_node_udemy:gxCSw0VvQ0PtJGjJ@cluster0-xrfsq.mongodb.net/contact-keeper-traversy"
+    "mongoURI": "mongodb+srv://max_node_udemy:gxCSw0VvQ0PtJGjJ@cluster0-xrfsq.mongodb.net/contact-keeper-traversy",
+    "jwtSecret": "secret"
 
 }
