@@ -28,13 +28,14 @@ router.post('/', [auth, [
         })
     }
 
-    const {name, email, phone, type} = req.body;
+    const {name, email, phone, blog, type} = req.body;
 
     try{
         const newContact = new Contact({
             name,
             email,
             phone,
+            blog,
             type,
             user: req.user.id
         });

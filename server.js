@@ -7,7 +7,7 @@ const app = express()
 connectDB()
 
 //init middleware
-app.use(express.json({extended: false}))
+app.use(express.json({extended: false, limit: "50mb"}))
 
 app.get('/', (req, res) => {
     res.send('hello world')

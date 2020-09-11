@@ -1,8 +1,36 @@
 import React, {useState, useContext, useEffect} from 'react'
 import ContactContext from '../../context/contact/contactContext'
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css'; // ES6
+
+let modules = {
+    toolbar: [
+      [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+      [{size: []}],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, 
+       {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false,
+    }
+  }
+  /* 
+   * Quill editor formats
+   * See https://quilljs.com/docs/formats/
+   */
+ let formats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ]
 
 export default function ContactForm() {
-
+    
     const contactContext = useContext(ContactContext);
     const {addContact, updateContact, clearCurrent, current} = contactContext;
 
@@ -14,6 +42,7 @@ export default function ContactForm() {
                 name: '',
                 email: '',
                 phone: '',
+                blog: '',
                 type: 'personal'
             })
         }
@@ -23,11 +52,13 @@ export default function ContactForm() {
         name: '',
         email: '',
         phone: '',
+        blog: '',
         type: 'personal'
     });
-    const {name, email, phone, type} = contact;
+    const {name, email, phone, blog, type} = contact;
 
     const onChange = e => setContact({...contact, [e.target.name]: e.target.value})
+    const onChangeBlog = html => setContact({...contact, blog: html})
 
     const onSubmit = e => {
         e.preventDefault();
@@ -94,9 +125,23 @@ export default function ContactForm() {
                     className="btn btn-primary btn-block"
                 />
             </div>
+            <div>
+            <ReactQuill value={blog || ''}
+                  onChange={onChangeBlog}
+                  name="blog"
+                  modules={modules}
+                    formats={formats}
+                   />
+            </div>
+            
             {current && <div>
                 <button className="btn btn-light btn-block" onClick={clearAll}>Clear</button>
                 </div>}
+                
         </form>
     )
 }
+
+
+  
+  

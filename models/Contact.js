@@ -21,6 +21,9 @@ const ContactSchema = mongoose.Schema({
     phone: {
         type: String
     },
+    blog: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now()
